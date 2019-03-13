@@ -6,7 +6,7 @@ Simple TDNN implementation in Pytorch
 
 ## Usage
 
-To recreate the TDNN part of the x-vector network in https://www.danielpovey.com/files/2018_icassp_xvectors.pdf:
+To recreate the TDNN part of the x-vector network in [2]:
 
 ```python
 
@@ -24,3 +24,5 @@ frame5 = TDNN(input_dim=512, output_dim=1500, context_size=3, dilation=1)
 # Output of frame5 will be (batch_size, T-14, 1500)
 
 ```
+
+![Alt text](misc/xvec_config.png?raw=true "Diagram") [2] https://www.danielpovey.com/files/2018_icassp_xvectors.pdf
