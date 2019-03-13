@@ -6,6 +6,8 @@ Simple TDNN implementation in Pytorch
 
 ## Usage
 
+To recreate the TDNN part of the x-vector network in https://www.danielpovey.com/files/2018_icassp_xvectors.pdf:
+
 ```python
 
 from tdnn import TDNN
