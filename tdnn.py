@@ -46,7 +46,8 @@ class TDNN(nn.Module):
         outpu: size (batch, new_seq_len, output_features)
         '''
 
-        # N, t, d = x.shape
+        _, _, d = x.shape
+        assert d == self.input_dim
         x = x.unsqueeze(1)
 
         # Unfold input into smaller temporal contexts
