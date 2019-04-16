@@ -1,5 +1,5 @@
 # TDNN
-Simple Time Delay Neural Network (TDNN) implementation in Pytorch
+Simple Time Delay Neural Network (TDNN) implementation in Pytorch. Uses the unfold method to slide over an input sequence.
 
 ![Alt text](misc/diagram.png?raw=true "Diagram") [1] https://www.danielpovey.com/files/2015_interspeech_multisplice.pdf
 
