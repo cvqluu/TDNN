@@ -11,7 +11,8 @@ class TDNN(nn.Module):
                     context_size=5,
                     stride=1,
                     dilation=1,
-                    batch_norm=True
+                    batch_norm=True,
+                    dropout_p=0.0
                 ):
         '''
         TDNN as defined by https://www.danielpovey.com/files/2015_interspeech_multisplice.pdf
@@ -33,12 +34,15 @@ class TDNN(nn.Module):
         self.input_dim = input_dim
         self.output_dim = output_dim
         self.dilation = dilation
-        
+        self.dropout_p = dropout_p
+        self.batch_norm = batch_norm
+      
         self.kernel = nn.Linear(input_dim*context_size, output_dim)
         self.nonlinearity = nn.ReLU()
-        self.batch_norm = batch_norm
-        if batch_norm:
+        if self.batch_norm:
             self.bn = nn.BatchNorm1d(output_dim)
+        if self.dropout_p:
+            self.drop = nn.Dropout(p=self.dropout_p)
         
     def forward(self, x):
         '''
@@ -47,7 +51,7 @@ class TDNN(nn.Module):
         '''
 
         _, _, d = x.shape
-        assert d == self.input_dim
+        assert (d == self.input_dim), 'Input dimension was wrong. Expected ({}), got ({})'.format(self.input_dim, d)
         x = x.unsqueeze(1)
 
         # Unfold input into smaller temporal contexts
@@ -62,6 +66,9 @@ class TDNN(nn.Module):
         x = x.transpose(1,2)
         x = self.kernel(x)
         x = self.nonlinearity(x)
+        
+        if self.dropout_p:
+            x = self.drop(x)
 
         if self.batch_norm:
             x = x.transpose(1,2)
