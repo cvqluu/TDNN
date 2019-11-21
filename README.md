@@ -3,6 +3,9 @@ Simple Time Delay Neural Network (TDNN) implementation in Pytorch. Uses the unfo
 
 ![Alt text](misc/diagram.png?raw=true "Diagram") [1] https://www.danielpovey.com/files/2015_interspeech_multisplice.pdf
 
+# Factorized TDNN (TDNN-F)
+
+I've also implemented the Factorized TDNN from Kaldi (TDNN-F) in PyTorch here: https://github.com/cvqluu/Factorized-TDNN
 
 ## Usage
 
